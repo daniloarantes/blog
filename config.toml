@@ -11,7 +11,7 @@ publishDir = "docs"
 
 [params]
   dateFormat = "Jan 2, 2006"
-  homeText = "Configurando site do início"
+  homeText = "Blog - Danilo Arantes"
 
 [menu]
   [[menu.main]]
