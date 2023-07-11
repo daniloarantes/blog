@@ -4,8 +4,7 @@
   <body>
     <div class="container">
       <header class="topo">
-         <h1><a class="titulo-pagina" href="https://daniloarantes.com.br">Danilo Arantes</a></h1>
-
+          <a href="{{ .Site.BaseURL }}" style="flex: 1 0 0;"><img class="titulo-pagina" src="{{ .Site.BaseURL }}imagens/LogoDanilo.svg"></a>
       </header>
       {{ partial "nav.html" . }}
       <main id="main">

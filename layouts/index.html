@@ -2,7 +2,7 @@
         {{ range where .Site.RegularPages.ByWeight "Section" "post" }}
         <article class="post">
           <header>
-            <h2><a href="{{ .Permalink }}" class="titulo-post">{{ .Title }}</a></h2>
+            <h1><a href="{{ .Permalink }}" class="titulo-post">{{ .Title }}</a></h1>
             <!--  {{ .Date.Format "2 Jan 2006" }} -->
           </header>
           <p>{{ .Summary }}</p>
