@@ -1,8 +1,8 @@
-{{- /* Foto com cartões inclinados. Parâmetros opcionais: src, largura, altura */ -}}
+{{- /* Foto com cartões inclinados. Parâmetros opcionais: src, largura, altura, alt */ -}}
 {{- $p := cond (reflect.IsMap .) . dict }}
-{{- $src := $p.src | default "imagens/danilo-github.jpg" }}
+{{- $src := $p.src | default "imagens/danilo.jpg" }}
 <div class="foto">
   <span class="foto-fundo foto-fundo-1" aria-hidden="true"></span>
   <span class="foto-fundo foto-fundo-2" aria-hidden="true"></span>
-  <img src="{{ $src | relURL }}" alt="Foto de Danilo Arantes" width="{{ $p.largura | default 406 }}" height="{{ $p.altura | default 406 }}">
+  <img src="{{ $src | relURL }}" alt="{{ $p.alt | default "Foto de Danilo Arantes" }}" width="{{ $p.largura | default 600 }}" height="{{ $p.altura | default 660 }}">
 </div>

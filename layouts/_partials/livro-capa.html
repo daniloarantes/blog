@@ -1,0 +1,5 @@
+{{- /* Capa do livro com cartão inclinado ao fundo. Recebe a página do livro. */ -}}
+<div class="livro-capa">
+  <span class="livro-capa-fundo" aria-hidden="true"></span>
+  <img src="{{ .Params.imagem | relURL }}" alt="Capa do livro {{ .Title }}: {{ .Params.subtitulo }}" width="680" height="1000" loading="lazy">
+</div>

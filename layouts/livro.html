@@ -1,0 +1,82 @@
+{{ define "main" }}
+<article class="livro-pagina">
+  <header class="livro-hero">
+    {{ partial "livro-capa.html" . }}
+    <div class="livro-hero-texto">
+      <span class="kicker" style="--h:220">{{ .Params.kicker }}</span>
+      <h1>{{ .Title }}<span>{{ .Params.subtitulo }}</span></h1>
+      <p class="livro-autores">{{ delimit .Params.autores ", " " e " }}</p>
+      <p class="hero-sub">{{ .Params.resumo }}</p>
+      <div class="botoes">
+        {{- range $i, $loja := .Params.lojas }}
+        <a class="btn {{ if eq $i 0 }}btn-escuro{{ else }}btn-contorno{{ end }}" href="{{ $loja.url }}" rel="noopener" target="_blank">{{ $loja.nome }}<span class="sr-only"> (abre em nova aba)</span></a>
+        {{- end }}
+      </div>
+    </div>
+  </header>
+
+  <section class="secao livro-temas" aria-labelledby="livro-temas-titulo">
+    <div class="secao-topo">
+      <div class="secao-titulo">
+        <span class="kicker" style="--h:255">Conteúdo</span>
+        <h2 id="livro-temas-titulo">Do primeiro celular à loja de apps</h2>
+      </div>
+    </div>
+    <div class="habilidades livro-temas-grade">
+      {{- $matizes := slice 150 255 305 55 }}
+      {{- range $i, $t := .Params.temas }}
+      <div class="habilidade" style="--h:{{ index $matizes (mod $i 4) }}">
+        <span class="habilidade-cod" aria-hidden="true">{{ $t.codigo }}</span>
+        <div>
+          <strong>{{ $t.titulo }}</strong>
+          <span>{{ $t.texto }}</span>
+        </div>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="secao livro-detalhes">
+    <div class="livro-sinopse">
+      <span class="kicker" style="--h:305">Sinopse</span>
+      <h2>Sobre o livro</h2>
+      <div class="prosa">{{ .Content }}</div>
+    </div>
+    <aside class="livro-ficha" aria-labelledby="livro-ficha-titulo">
+      <h2 id="livro-ficha-titulo">Ficha técnica</h2>
+      <dl>
+        <div><dt>Autores</dt><dd>{{ delimit .Params.autores ", " " e " }}</dd></div>
+        {{- range .Params.ficha }}
+        <div><dt>{{ index . 0 }}</dt><dd>{{ index . 1 }}</dd></div>
+        {{- end }}
+      </dl>
+      <h2>Onde comprar</h2>
+      <ul class="livro-lojas">
+        {{- range .Params.lojas }}
+        <li><a href="{{ .url }}" rel="noopener" target="_blank"><span>{{ .nome }}</span><small>{{ .detalhe }}</small><i aria-hidden="true">↗</i><span class="sr-only"> (abre em nova aba)</span></a></li>
+        {{- end }}
+      </ul>
+    </aside>
+  </section>
+</article>
+
+<script type="application/ld+json">
+{{- $autores := slice }}
+{{- range .Params.autores }}{{ $autores = $autores | append (dict "@type" "Person" "name" .) }}{{ end }}
+{{- dict
+  "@context" "https://schema.org"
+  "@type" "Book"
+  "name" (printf "%s: %s" .Title .Params.subtitulo)
+  "author" $autores
+  "isbn" .Params.isbn
+  "numberOfPages" 184
+  "inLanguage" "pt-BR"
+  "datePublished" (.Date.Format "2006-01-02")
+  "publisher" (dict "@type" "Organization" "name" "Editora Senac São Paulo")
+  "image" (.Params.imagem | absURL)
+  "url" .Permalink
+  "description" .Params.resumo
+  "bookFormat" (slice "https://schema.org/Paperback" "https://schema.org/EBook")
+  | jsonify | safeJS }}
+</script>
+{{ end }}

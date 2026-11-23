@@ -9,6 +9,7 @@
       {{- $ativo := false }}
       {{- if and (eq .Name "Blog") (or (eq $atual.Section "post") (eq $atual.Section "tags")) }}{{ $ativo = true }}{{ end }}
       {{- if and (eq .Name "Sobre") (eq $atual.RelPermalink "/sobre/") }}{{ $ativo = true }}{{ end }}
+      {{- if and (eq .Name "Livro") (eq $atual.RelPermalink "/livro/") }}{{ $ativo = true }}{{ end }}
       <a href="{{ .URL | relURL }}"{{ if $ativo }} aria-current="page"{{ end }}>{{ .Name }}</a>
     {{- end }}
   </nav>
@@ -22,9 +23,9 @@
   (function () {
     var raiz = document.documentElement;
     var botao = document.getElementById('tema');
-    var escuroSistema = window.matchMedia('(prefers-color-scheme: dark)');
+    var corTema = document.getElementById('cor-tema');
     function atual() {
-      return raiz.getAttribute('data-theme') || (escuroSistema.matches ? 'dark' : 'light');
+      return raiz.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
     }
     function rotular() {
       var escuro = atual() === 'dark';
@@ -35,10 +36,10 @@
     botao.addEventListener('click', function () {
       var novo = atual() === 'dark' ? 'light' : 'dark';
       raiz.setAttribute('data-theme', novo);
+      if (corTema) corTema.setAttribute('content', novo === 'light' ? '#faf9f5' : '#16181d');
       try { localStorage.setItem('tema', novo); } catch (e) {}
       rotular();
     });
-    escuroSistema.addEventListener('change', rotular);
     rotular();
   })();
 </script>

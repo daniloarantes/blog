@@ -1,6 +1,6 @@
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   {{- $title := print .Title " | " site.Title }}
   {{- if .IsHome }}{{ $title = site.Title }}{{ end }}
   {{- $description := .Description }}
@@ -8,7 +8,7 @@
     {{- if .IsHome }}{{ $description = site.Params.homeText }}{{ else }}{{ $description = .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | truncate 160 }}{{ end }}
   {{- end }}
   {{- $tags := .Keywords | default .Params.tags }}
-  {{- $image := "imagens/danilo-github.jpg" | absURL }}
+  {{- $image := (.Params.imagem | default "imagens/danilo-compartilhar.jpg") | absURL }}
   <meta name="description" content="{{ $description }}">
   {{- with $tags }}
   <meta name="keywords" content="{{ delimit . ", " }}">
@@ -37,14 +37,15 @@
   <link rel="canonical" href="{{ .Permalink }}">
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">{{ end }}
   {{ hugo.Generator }}
-  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#16181d" id="cor-tema">
   <script>
-    /* Aplica o tema escolhido antes de desenhar a página (evita piscar) */
+    /* Tema escuro é o padrão; aplica o claro se o visitante o escolheu (antes de desenhar, sem piscar) */
     (function () {
       try {
-        var t = localStorage.getItem('tema');
-        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        if (localStorage.getItem('tema') === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.getElementById('cor-tema').setAttribute('content', '#faf9f5');
+        }
       } catch (e) {}
     })();
   </script>

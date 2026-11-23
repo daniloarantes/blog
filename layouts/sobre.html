@@ -6,7 +6,7 @@
       <h1>{{ .Title }}</h1>
       {{ with .Description }}<p class="hero-sub">{{ . }}</p>{{ end }}
     </div>
-    {{ partial "foto.html" . }}
+    {{ partial "foto.html" (dict "src" "imagens/danilo-web-summit-rio-2024.jpg" "largura" 460 "altura" 506 "alt" "Danilo Arantes no Web Summit Rio 2024") }}
   </header>
   <div class="prosa">
     {{ .Content }}

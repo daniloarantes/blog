@@ -35,9 +35,13 @@ publishDir = "public"
     url = "/#serie"
     weight = 2
   [[menu.main]]
+    name = "Livro"
+    url = "/livro/"
+    weight = 3
+  [[menu.main]]
     name = "Sobre"
     url = "/sobre/"
-    weight = 3
+    weight = 4
 
 [taxonomies]
   tag = "tags"

@@ -16,6 +16,30 @@
   {{ partial "foto.html" . }}
 </section>
 
+{{- with site.GetPage "/livro" }}
+<section id="livro" class="secao" aria-labelledby="livro-titulo">
+  <div class="livro-destaque">
+    {{ partial "livro-capa.html" . }}
+    <div class="livro-destaque-texto">
+      <span class="kicker" style="--h:220">Livro · Editora Senac São Paulo</span>
+      <h2 id="livro-titulo">{{ .Title }}<span>{{ .Params.subtitulo }}</span></h2>
+      <p>{{ .Params.resumo }}</p>
+      <ul class="livro-chips" aria-label="Detalhes">
+        <li>184 páginas</li>
+        <li>Impresso e Kindle</li>
+        <li>Lançado em 2024</li>
+      </ul>
+      <div class="botoes">
+        <a class="btn btn-escuro" href="{{ .RelPermalink }}">Conhecer o livro</a>
+        {{- with index .Params.lojas 0 }}
+        <a class="btn btn-contorno" href="{{ .url }}" rel="noopener" target="_blank">{{ .nome }}<span class="sr-only"> (abre em nova aba)</span></a>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{- end }}
+
 {{- $aulas := sort (where $posts "Params.serie" "Servidor Debian do zero") "Params.aula" }}
 {{- with $aulas }}
 <section id="serie" class="secao">
@@ -40,6 +64,7 @@
   </div>
 </section>
 {{- end }}
+
 
 <section id="blog" class="secao">
   <div class="secao-topo">
