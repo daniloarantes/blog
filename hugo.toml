@@ -6,29 +6,36 @@ publishDir = "public"
 [markup]
   [markup.highlight]
     codeFences = true
-    style = "pygments"
+    style = "github-dark"
   [markup.goldmark.renderer]
     # permite HTML bruto (ex.: <br>) dentro dos arquivos Markdown
     unsafe = true
 
 [params]
-  dateFormat = "Jan 2, 2006"
-  homeText = "Blog - Danilo Arantes"
+  homeText = "Linux, redes e código explicados sem complicação. Aulas, tutoriais e anotações de Danilo Arantes."
+  twitter = "daniloarantes"
+  youtube = "https://www.youtube.com/watch?v=tEYL9-DU60g"
+
+  # Categorias dos posts (campo "categoria"), na ordem dos filtros, com o matiz oklch da cor
+  categorias = [
+    { nome = "Linux", matiz = 150 },
+    { nome = "Redes", matiz = 255 },
+    { nome = "Servidores", matiz = 305 },
+    { nome = "Docker", matiz = 220 },
+    { nome = "Fundamentos", matiz = 55 },
+  ]
 
 [menu]
   [[menu.main]]
     name = "Blog"
-    pre = "edit"
     url = "/post/"
     weight = 1
   [[menu.main]]
-    name = "Tags"
-    pre = "tag"
-    url = "/tags/"
+    name = "Aulas"
+    url = "/#serie"
     weight = 2
   [[menu.main]]
     name = "Sobre"
-    pre = "user"
     url = "/sobre/"
     weight = 3
 

@@ -3,6 +3,8 @@ date: "2017-10-12T18:02:42-03:00"
 title: "Correção de erro 'failed to register layer' no Docker"
 tags: ["Docker", "Linux"]
 author: "Danilo Arantes"
+description: "Como resolver a falha de symlink ao fazer pull de um container."
+categoria: "Docker"
 ---
 
 ![Docker](../../imagens/docker.png)

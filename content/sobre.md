@@ -2,10 +2,12 @@
 title: "Sobre mim"
 date: 2023-06-25T19:24:00-03:00
 draft: false
+layout: sobre
+kicker: "Sobre"
+description: "Técnico em Eletrônica, bacharel em Ciência da Computação e docente de Tecnologia da Informação no Senac Rio Claro."
 ---
 
 
-{{< figure src="/imagens/Danilo_Arantes.jpg" class="img-logo" >}}
 Sou formado como Técnico em Eletrônica e possuo um Bacharelado em Ciência da Computação com Especialização em Engenharia de Banco de Dados. 
 
 Atualmente, atuo como docente no Senac Rio Claro, lecionando na área de Tecnologia da Informação e Computação Gráfica.

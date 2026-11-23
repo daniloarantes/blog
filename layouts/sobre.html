@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article class="artigo artigo-sobre">
+  <header class="sobre-hero">
+    <div class="sobre-hero-texto">
+      <span class="kicker" style="--h:305">{{ .Params.kicker | default "Sobre" }}</span>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="hero-sub">{{ . }}</p>{{ end }}
+    </div>
+    {{ partial "foto.html" . }}
+  </header>
+  <div class="prosa">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

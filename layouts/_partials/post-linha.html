@@ -1,0 +1,13 @@
+{{- $cat := .Params.categoria | default "Geral" }}
+{{- $resumo := .Description | default (.Summary | plainify | htmlUnescape | replaceRE `\s+` " " | truncate 160) }}
+<a class="linha" href="{{ .RelPermalink }}" data-cat="{{ $cat }}" style="--h:{{ partial "matiz.html" $cat }}">
+  <span class="linha-meta">
+    <span class="cat"><i aria-hidden="true"></i>{{ $cat }}</span>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+  </span>
+  <span class="linha-texto">
+    <span class="linha-titulo">{{ .Title }}</span>
+    <span class="linha-resumo">{{ $resumo }}</span>
+  </span>
+  <span class="seta" aria-hidden="true">→</span>
+</a>

@@ -1,11 +1,11 @@
 ---
-description: Atualizando Debian Stretch para Buster
 title: "Atualizando Debian Stretch para Buster"
 date: "2017-10-23T17:00:00-03:00"
 tags: ["Linux"]
-section: post
 draft: false
 author: "Danilo Arantes"
+description: "Alterando os repositórios com sed e conduzindo a atualização com segurança."
+categoria: "Linux"
 ---
 
 Este final de semana fiz a atualização do Debian Stretch que estava rodando no meu notebook para a versão testing, Debian Buster.

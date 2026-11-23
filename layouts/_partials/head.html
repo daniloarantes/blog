@@ -8,7 +8,7 @@
     {{- if .IsHome }}{{ $description = site.Params.homeText }}{{ else }}{{ $description = .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | truncate 160 }}{{ end }}
   {{- end }}
   {{- $tags := .Keywords | default .Params.tags }}
-  {{- $image := "imagens/Danilo_Arantes.jpg" | absURL }}
+  {{- $image := "imagens/danilo-github.jpg" | absURL }}
   <meta name="description" content="{{ $description }}">
   {{- with $tags }}
   <meta name="keywords" content="{{ delimit . ", " }}">
@@ -37,6 +37,22 @@
   <link rel="canonical" href="{{ .Permalink }}">
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">{{ end }}
   {{ hugo.Generator }}
-  <link rel="stylesheet" href="{{ "css/estilo.css" | relURL }}">
+  <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
+  <script>
+    /* Aplica o tema escolhido antes de desenhar a página (evita piscar) */
+    (function () {
+      try {
+        var t = localStorage.getItem('tema');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  {{- $css := resources.Get "css/site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
   <title>{{ $title }}</title>
 </head>

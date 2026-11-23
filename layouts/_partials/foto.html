@@ -1,0 +1,8 @@
+{{- /* Foto com cartões inclinados. Parâmetros opcionais: src, largura, altura */ -}}
+{{- $p := cond (reflect.IsMap .) . dict }}
+{{- $src := $p.src | default "imagens/danilo-github.jpg" }}
+<div class="foto">
+  <span class="foto-fundo foto-fundo-1" aria-hidden="true"></span>
+  <span class="foto-fundo foto-fundo-2" aria-hidden="true"></span>
+  <img src="{{ $src | relURL }}" alt="Foto de Danilo Arantes" width="{{ $p.largura | default 406 }}" height="{{ $p.altura | default 406 }}">
+</div>

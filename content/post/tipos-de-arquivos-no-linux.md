@@ -3,6 +3,8 @@ date: "2017-07-05T11:06:12-03:00"
 title: "Tipos de arquivos no Linux"
 tags: ["Linux"]
 author: "Danilo Arantes"
+description: "Arquivos comuns, diretórios, links, device files, sockets e pipes."
+categoria: "Linux"
 ---
 
 No linux, um arquivo pode se subdividir em um dos seguinte stipos:

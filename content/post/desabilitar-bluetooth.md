@@ -3,6 +3,8 @@ date: "2018-03-06T11:02:07-03:00"
 title: "Desabilitando o Bluetooth na inicialização do Debian"
 tags: ["Linux"]
 author: "Danilo Arantes"
+description: "Economize bateria do notebook desativando o serviço com systemctl."
+categoria: "Linux"
 ---
 
 Geralmente os notebooks vem com bluetooth, que por um lado é bom mas por outro não. Manter o bluetooth ligado direto faz com que consuma muita bateria e não é isso o que queremos quando o assunto é notebook.

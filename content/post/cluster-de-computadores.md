@@ -3,6 +3,8 @@ title:  "O que é um Cluster de Computadores?"
 author:  "Danilo Arantes"
 tags: ["Ciência da Computação"]
 date:  "2017-06-19T21:26:58+00:00"
+description: "Conceitos de cluster a partir de um artigo sobre replicação com MySQL Cluster."
+categoria: "Servidores"
 ---
 
 Este é o trecho de um artigo meu sobre Redundância e Replicação de dados utilizando MySQL e MySQL Cluster. O desenvolvimento do artigo foi baseado em um cluster responsável pelo gerenciamento do banco de dados - em outro post falarei mais sobre esse trabalho com exemplo e aplicação prática.

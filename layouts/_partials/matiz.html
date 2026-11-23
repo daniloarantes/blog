@@ -1,0 +1,6 @@
+{{- /* Recebe o nome de uma categoria e devolve o matiz oklch configurado em params.categorias */ -}}
+{{- $matiz := 260 }}
+{{- range site.Params.categorias }}
+  {{- if eq .nome $ }}{{ $matiz = .matiz }}{{ end }}
+{{- end }}
+{{- return $matiz }}

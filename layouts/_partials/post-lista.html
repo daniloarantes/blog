@@ -1,0 +1,28 @@
+{{- /* Lista de posts com filtros por categoria. Recebe as páginas. */ -}}
+{{- $paginas := . }}
+<div class="filtros" role="group" aria-label="Filtrar por categoria">
+  <button type="button" data-filtro="Todos" aria-pressed="true">Todos</button>
+  {{- range site.Params.categorias }}
+    {{- if where $paginas "Params.categoria" .nome }}
+  <button type="button" data-filtro="{{ .nome }}" aria-pressed="false" style="--h:{{ .matiz }}">{{ .nome }}</button>
+    {{- end }}
+  {{- end }}
+</div>
+<div class="lista">
+  {{- range $paginas }}
+    {{ partial "post-linha.html" . }}
+  {{- end }}
+</div>
+<script>
+  (function () {
+    var botoes = document.querySelectorAll('[data-filtro]');
+    var linhas = document.querySelectorAll('.lista .linha');
+    botoes.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.dataset.filtro;
+        botoes.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        linhas.forEach(function (l) { l.hidden = f !== 'Todos' && l.dataset.cat !== f; });
+      });
+    });
+  })();
+</script>

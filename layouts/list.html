@@ -1,15 +1,19 @@
 {{ define "main" }}
-{{ range .Pages.ByPublishDate.Reverse }}
-  <article class="post">
-    <header>
-      <h1><a href="{{ .RelPermalink }}" class="titulo-post">{{ .Title }}</a></h1>
-        {{ .Date.Format "2 Jan 2006" }}
-    </header>
-    <p>{{ .Summary }}</p>
-  </article>
-
-
-
-    {{ end }}
-
-{{ end}}
+<section class="secao secao-pagina">
+  <div class="secao-topo">
+    <div class="secao-titulo">
+      {{- if eq .Kind "term" }}
+      <span class="kicker" style="--h:255">Tag</span>
+      <h1>{{ .Title }}</h1>
+      {{- else }}
+      <span class="kicker" style="--h:255">Blog</span>
+      <h1>Publicações</h1>
+      {{- end }}
+    </div>
+    {{- if eq .Kind "term" }}
+    <p>{{ len .Pages }} {{ cond (eq (len .Pages) 1) "publicação" "publicações" }} · <a href="{{ "/tags/" | relURL }}">todas as tags</a></p>
+    {{- end }}
+  </div>
+  {{ partial "post-lista.html" .Pages.ByDate.Reverse }}
+</section>
+{{ end }}

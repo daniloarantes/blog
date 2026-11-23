@@ -1,14 +1,85 @@
-        {{ define "main" }}
-        {{ range where .Site.RegularPages.ByWeight "Section" "post" }}
-        <article class="post">
-          <header>
-            <h1><a href="{{ .Permalink }}" class="titulo-post">{{ .Title }}</a></h1>
-            <!--  {{ .Date.Format "2 Jan 2006" }} -->
-          </header>
-          <p>{{ .Summary }}</p>
-        </article>
+{{ define "main" }}
+{{- $posts := (where site.RegularPages "Section" "post").ByDate.Reverse }}
 
+<section class="hero">
+  <div class="hero-texto">
+    <div class="prompt" aria-hidden="true">
+      <span><b>danilo@debian</b>:~$</span><span>whoami</span><i class="cursor"></i>
+    </div>
+    <h1>Linux, redes e código — explicados <em>sem complicação.</em></h1>
+    <p class="hero-sub">Sou Danilo Arantes, docente de Tecnologia da Informação no Senac Rio Claro. Aqui compartilho aulas, tutoriais e anotações sobre GNU/Linux, servidores, bancos de dados e desenvolvimento.</p>
+    <div class="botoes">
+      <a class="btn btn-escuro" href="#blog">Ler o blog</a>
+      <a class="btn btn-contorno" href="#serie">Assistir às aulas</a>
+    </div>
+  </div>
+  {{ partial "foto.html" . }}
+</section>
 
-  {{ end }}
+{{- $aulas := sort (where $posts "Params.serie" "Servidor Debian do zero") "Params.aula" }}
+{{- with $aulas }}
+<section id="serie" class="secao">
+  <div class="secao-topo">
+    <div class="secao-titulo">
+      <span class="kicker" style="--h:150">Série em vídeo</span>
+      <h2>Servidor Debian do zero</h2>
+    </div>
+    <p>Da máquina virtual ao bonding de rede: um servidor GNU/Linux completo, aula por aula.</p>
+  </div>
+  <div class="aulas">
+    {{- $matizes := slice 220 150 305 255 }}
+    {{- range $i, $p := . }}
+    <a class="aula" href="{{ $p.RelPermalink }}" style="--h:{{ index $matizes (mod $i 4) }}">
+      <span class="aula-num">{{ printf "%02d" $p.Params.aula }}</span>
+      <span class="aula-texto">
+        <span class="aula-titulo">{{ replaceRE `\s*\|\s*Aula \d+$` "" $p.Title }}</span>
+        <span class="aula-cta">Aula {{ $p.Params.aula }} →</span>
+      </span>
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
 
-        {{ end }}
+<section id="blog" class="secao">
+  <div class="secao-topo">
+    <div class="secao-titulo">
+      <span class="kicker" style="--h:255">Blog</span>
+      <h2>Publicações</h2>
+    </div>
+  </div>
+  {{ partial "post-lista.html" $posts }}
+  <p class="mais"><a href="{{ "/post/" | relURL }}">Ver todas as publicações →</a></p>
+</section>
+
+<section id="sobre" class="secao sobre-home">
+  <div class="sobre-texto">
+    <span class="kicker" style="--h:305">Sobre</span>
+    <h2>Da eletrônica à sala de aula.</h2>
+    <p>Técnico em Eletrônica, bacharel em Ciência da Computação e especialista em Engenharia de Banco de Dados. Leciono Tecnologia da Informação e Computação Gráfica no Senac Rio Claro.</p>
+    <div class="premio">
+      <span>Prêmio · 2009</span>
+      <strong>2º lugar no Prêmio Anhanguera de Mérito Científico e Intelectual — Ciências Exatas</strong>
+    </div>
+    <a class="link-forte" href="{{ "/sobre/" | relURL }}">Currículo completo →</a>
+  </div>
+  <div class="habilidades">
+    {{- $habilidades := slice
+      (dict "codigo" "$_" "matiz" 150 "titulo" "GNU/Linux" "texto" "Instalação, configuração e administração de servidores.")
+      (dict "codigo" "</>" "matiz" 255 "titulo" "Web FullStack" "texto" "HTML5, CSS3, JavaScript e PHP.")
+      (dict "codigo" "{ }" "matiz" 305 "titulo" "Software" "texto" "Java e Python com boas práticas e padrões.")
+      (dict "codigo" "DB" "matiz" 55 "titulo" "Bancos de Dados" "texto" "Modelagem e implementação com SQL Server e MariaDB/MySQL.")
+      (dict "codigo" "▢" "matiz" 220 "titulo" "Mobile" "texto" "Apps Android com Java e Android Studio.")
+    }}
+    {{- range $habilidades }}
+    <div class="habilidade" style="--h:{{ .matiz }}">
+      <span class="habilidade-cod" aria-hidden="true">{{ .codigo }}</span>
+      <div>
+        <strong>{{ .titulo }}</strong>
+        <span>{{ .texto }}</span>
+      </div>
+    </div>
+    {{- end }}
+  </div>
+</section>
+{{ end }}

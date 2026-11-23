@@ -1,0 +1,11 @@
+<footer class="rodape">
+  <div class="wrap">
+    <span>© {{ now.Year }} {{ site.Title }}</span>
+    <nav aria-label="Links">
+      {{ with site.Params.twitter }}<a href="https://twitter.com/{{ . }}">Twitter</a>{{ end }}
+      {{ with site.Params.youtube }}<a href="{{ . }}">YouTube</a>{{ end }}
+      <a href="{{ "/tags/" | relURL }}">Tags</a>
+      <a href="{{ "/index.xml" | relURL }}">RSS</a>
+    </nav>
+  </div>
+</footer>

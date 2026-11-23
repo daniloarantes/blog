@@ -1,9 +1,54 @@
 {{ define "main" }}
-        <article class="post">
-          <header>
-            <h1 class="titulo-post">{{ .Title }}</h1>
-            {{ partial "date-and-tags.html" . }}<br><br>
-          </header>
-          {{ .Content }}
-        </article>
-  {{ end }}
+{{- $cat := .Params.categoria }}
+<article class="artigo">
+  <header class="artigo-topo">
+    <div class="artigo-meta">
+      {{- with $cat }}
+      <a class="cat" href="{{ "/post/" | relURL }}" style="--h:{{ partial "matiz.html" . }}"><i aria-hidden="true"></i>{{ . }}</a>
+      {{- end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+    </div>
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.tags }}
+    <ul class="pilulas" aria-label="Tags">
+      {{- range . }}
+      <li><a href="{{ (printf "/tags/%s/" (urlize .)) | relURL }}">#{{ . }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </header>
+
+  {{- with .Params.serie }}
+  {{- $serie := . }}
+  {{- $aulas := sort (where site.RegularPages "Params.serie" $serie) "Params.aula" }}
+  <nav class="serie-box" aria-label="Série {{ $serie }}">
+    <span class="kicker" style="--h:150">Série · {{ $serie }}</span>
+    <ol>
+      {{- range $aulas }}
+      <li{{ if eq .RelPermalink $.RelPermalink }} aria-current="page"{{ end }}>
+        <a href="{{ .RelPermalink }}"><b>{{ printf "%02d" .Params.aula }}</b>{{ replaceRE `\s*\|\s*Aula \d+$` "" .Title }}</a>
+      </li>
+      {{- end }}
+    </ol>
+  </nav>
+  {{- end }}
+
+  <div class="prosa">
+    {{ .Content }}
+  </div>
+
+  <footer class="artigo-fim">
+    {{- if .Params.serie }}
+      {{- $aulas := sort (where site.RegularPages "Params.serie" .Params.serie) "Params.aula" }}
+      {{- $atual := .Params.aula }}
+      {{- range $aulas }}
+        {{- if eq .Params.aula (sub $atual 1) }}<a class="nav-ant" href="{{ .RelPermalink }}"><small>← Aula anterior</small>{{ replaceRE `\s*\|\s*Aula \d+$` "" .Title }}</a>{{ end }}
+      {{- end }}
+      {{- range $aulas }}
+        {{- if eq .Params.aula (add $atual 1) }}<a class="nav-prox" href="{{ .RelPermalink }}"><small>Próxima aula →</small>{{ replaceRE `\s*\|\s*Aula \d+$` "" .Title }}</a>{{ end }}
+      {{- end }}
+    {{- end }}
+    <a class="link-forte voltar" href="{{ "/post/" | relURL }}">← Todas as publicações</a>
+  </footer>
+</article>
+{{ end }}

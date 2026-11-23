@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br" dir="ltr">
+<html lang="pt-BR">
   {{ partial "head.html" . }}
   <body>
-    <div class="container">
-      <header class="topo">
-          <a href="{{ "/" | relURL }}" style="flex: 1 0 0;"><img class="titulo-pagina" src="{{ "imagens/LogoDanilo.svg" | relURL }}"></a>
-      </header>
-      {{ partial "nav.html" . }}
-      <main id="main">
+    <div class="faixa" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    {{ partial "nav.html" . }}
+    <main class="wrap" id="main">
       {{ block "main" . }}{{ end }}
-      </main>
-
-    </div>
-
+    </main>
+    {{ partial "footer.html" . }}
   </body>
-  {{ partial "script.html" . }}
 </html>

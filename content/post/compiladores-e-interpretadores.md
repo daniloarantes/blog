@@ -3,7 +3,8 @@ date: "2017-06-27T15:13:00-03:00"
 title: "Compiladores e Interpretadores"
 author: "Danilo Arantes"
 tags: ["Ciência da Computação"]
-Description: "A maneira de se comunicar com um computador chama-se programa e a única linguagem que o computador entende chama-se linguagem de máquina. Portanto todos os programas que se comunicam com a máquina devem estar em linguagem de máquina."
+description: "Como os programas são traduzidos para linguagem de máquina."
+categoria: "Fundamentos"
 ---
 
 A maneira de se comunicar com um computador chama-se programa e a única linguagem que o computador entende chama-se _linguagem de máquina_. Portanto todos os programas que se comunicam com a máquina devem estar em linguagem de máquina.

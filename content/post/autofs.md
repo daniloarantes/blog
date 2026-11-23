@@ -1,10 +1,10 @@
 ---
-description: ""
 date: "2017-06-15T19:32:42-03:00"
 title: "Configurando o Automount (Autofs)"
-categories: []
 tags: ["Linux"]
 author: "Danilo Arantes"
+description: "Montagem sob demanda de compartilhamentos remotos com autofs."
+categoria: "Linux"
 ---
 
 A montagem automática é utilizada como um sistema de montagem sob demanda.
@@ -36,7 +36,7 @@ Crie o diretório _/etc/auto.master.d_
 Dentro de _/etc/auto.master.d_ crie o arquivo _montagem.autofs_ e dentro desse arquivo coloque o seguinte conteúdo:
 
 ```bash
-/Arquivos /etc/auto.montagem &#8211;timeout=10
+/Arquivos /etc/auto.montagem --timeout=10
 ```
 
 Agora crie o arquivo _/etc/auto.montagem_ com o conteúdo abaixo:

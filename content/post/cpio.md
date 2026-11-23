@@ -4,6 +4,8 @@ date: "2017-06-15T17:41:57-03:00"
 draft: false
 author: "Danilo Arantes"
 tags: ["Linux"]
+description: "Criar, listar e extrair arquivamentos com o comando cpio."
+categoria: "Linux"
 ---
 
 O comando CPIO utiliza uma lista de arquivos da saída padrão para criar um arquivamento, enviando estes para a saída padrão.

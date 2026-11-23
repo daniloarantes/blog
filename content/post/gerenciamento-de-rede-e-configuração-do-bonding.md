@@ -1,8 +1,12 @@
 ---
 title: "Gerenciamento da Rede e Configuração do Bonding | Aula 04"
 date: 2021-01-20T19:32:42-03:00
-tags: []
+tags: ["Linux", "Servidor Linux", "Redes"]
 draft: false
+description: "Gerenciamento básico com o comando ip, interface com IP estático e bonding para redundância das placas de rede."
+categoria: "Redes"
+serie: "Servidor Debian do zero"
+aula: 4
 ---
 
 Olá pessoal!

@@ -3,6 +3,8 @@ date: "2017-08-14T14:32:42-03:00"
 title: "Um pouco sobre IPv4 e IPv6"
 tags: ["Ciência da Computação", "Redes"]
 author: "Danilo Arantes"
+description: "As limitações de endereçamento do IPv4, classes de rede e a chegada do IPv6."
+categoria: "Redes"
 ---
 
 ## **IPv4**

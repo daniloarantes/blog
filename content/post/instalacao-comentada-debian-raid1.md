@@ -1,8 +1,12 @@
 ---
 title: "Instalação Comentada do Debian com Raid 1 | Aula 02"
 date: 2021-01-06T10:30:54-03:00
-tags: []
+tags: ["Linux", "Servidor Linux"]
 draft: false
+description: "Instalação do Debian etapa por etapa, com dois discos espelhados e sincronizados em tempo real."
+categoria: "Servidores"
+serie: "Servidor Debian do zero"
+aula: 2
 ---
 
 Nesta segunda aula iremos realizar a instalação do sistema GNU/Linux Debian de maneira comentada explicando todas as etapas de instalação.

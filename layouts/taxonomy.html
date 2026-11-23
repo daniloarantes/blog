@@ -1,13 +1,21 @@
 {{ define "main" }}
-
-<h1>Posts organizados por TAG</h1>
-<br>
-{{ range .Data.Terms.Alphabetical }}
-<p class="box-tag" >
-  <a class="tag-link" href="{{ .Page.Permalink }}">
-    <span id="contador">{{ .Count }}</span> {{ .Page.Title }}
-  </a>
-</p>
-{{ end }}
-
+<section class="secao secao-pagina">
+  <div class="secao-topo">
+    <div class="secao-titulo">
+      <span class="kicker" style="--h:255">Blog</span>
+      <h1>Tags</h1>
+    </div>
+    <p>Publicações organizadas por assunto.</p>
+  </div>
+  <ul class="tags-grade">
+    {{- range .Data.Terms.Alphabetical }}
+    <li>
+      <a href="{{ .Page.RelPermalink }}">
+        <span class="tags-nome">{{ .Page.Title }}</span>
+        <span class="tags-conta">{{ .Count }}</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</section>
 {{ end }}

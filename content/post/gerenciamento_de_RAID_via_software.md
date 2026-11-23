@@ -1,8 +1,12 @@
 ---
 title: "Gerenciamento de RAID via software no Debian | Aula 03"
 date: 2021-01-13T20:06:45-03:00
-tags: []
+tags: ["Linux", "Servidor Linux"]
 draft: false
+description: "Testes de funcionamento do RAID via software e os comandos do mdadm para manter o serviço ativo."
+categoria: "Servidores"
+serie: "Servidor Debian do zero"
+aula: 3
 ---
 
 Na segunda etapa da instalação do nosso servidor Debian, realizamos a configuração dos discos como RAID 1.
