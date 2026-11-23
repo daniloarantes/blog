@@ -1,13 +1,15 @@
-baseURL = "https://daniloarantes.com.br"
-languageCode = "pt-br"
+baseURL = "https://daniloarantes.com.br/"
+locale = "pt-BR"
 title = "Danilo Arantes"
-pygmentsCodefences = true
-pygmentsStyle = "pygments"
 publishDir = "public"
 
-[permalinks]
-  blog = "/:filename/"
-  sobre = "/:filename/"
+[markup]
+  [markup.highlight]
+    codeFences = true
+    style = "pygments"
+  [markup.goldmark.renderer]
+    # permite HTML bruto (ex.: <br>) dentro dos arquivos Markdown
+    unsafe = true
 
 [params]
   dateFormat = "Jan 2, 2006"
